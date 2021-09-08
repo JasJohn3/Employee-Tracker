@@ -26,7 +26,7 @@ function viewAllEmployees() {
   FROM employees
 
   JOIN employee_roles ON employees.role_id = employee_roles.id
-  
+
   JOIN departments ON employee_roles.department_id = departments.id
 
   ORDER BY employees.id
@@ -119,6 +119,7 @@ function searchEmployee() {
 }
 
 function mainMenu() {
+
   inquirer
     .prompt({
       type: 'list',
