@@ -4,12 +4,13 @@ require('dotenv').config();
 
 const password = process.env.MYSQL_PW;
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 
 //connect to database
 const db = mysql.createConnection({
@@ -26,7 +27,7 @@ app.get('/employees', (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.status(200).send(results);
+      res.status(200).json(results);
     }
   });
 });
