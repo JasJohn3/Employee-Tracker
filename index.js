@@ -24,8 +24,12 @@ function viewAllEmployees() {
   employees.manager_id AS 'Manager'
 
   FROM employees
+
   JOIN employee_roles ON employees.role_id = employee_roles.id
+  
   JOIN departments ON employee_roles.department_id = departments.id
+
+  ORDER BY employees.id
   `;
   db.query(sql, (err, results) => {
     if (err) {
@@ -40,33 +44,39 @@ function viewAllEmployees() {
 function viewAllDepartments() {
   const sql = `
   SELECT
-  departments.id AS 'ID'
-  departments.department_name AS 'Department',
+  departments.id AS 'ID',
+  departments.department_name AS 'Department'
+
   FROM departments
+
+  ORDER BY departments.id
   `;
   db.query(sql, (err, results) => {
     if (err) {
       console.log(err);
     } else {
       console.table(results);
+      mainMenu();
     }
   });
 }
 function viewAllRoles() {
   const sql = `
   SELECT
-  employee.id AS 'ID'
+  employee_roles.id AS 'ID',
   employee_roles.title AS 'Title',
-  employee_roles.salary AS 'Salary',
-  departments.department_name AS 'Department',
+  employee_roles.salary AS 'Salary'
+
   FROM employee_roles
-  JOIN departments ON employee_roles.department_id = departments.id
+
+  ORDER BY employee_roles.id
   `;
   db.query(sql, (err, results) => {
     if (err) {
       console.log(err);
     } else {
       console.table(results);
+      mainMenu();
     }
   });
 }

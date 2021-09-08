@@ -18,3 +18,9 @@ employees.manager_id AS 'Manager'
 FROM employees
 JOIN employee_roles ON employees.role_id = employee_roles.id
 JOIN departments ON employee_roles.department_id = departments.id;
+
+
+SELECT
+departments.id AS 'ID',
+departments.department_name AS 'Department'
+FROM departments;
